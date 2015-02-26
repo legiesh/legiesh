@@ -1,4 +1,3 @@
-
 /* ========================================================================= */
 /*	Preloader
 /* ========================================================================= */
@@ -32,14 +31,26 @@ $(document).ready(function(){
 	});
 	
     $(window).scroll(function () {
-        if ($(window).scrollTop() > 20) {
-            $("#navigation").css("background-color","#323248");
+        if ($(window).scrollTop() > 400) {
+            $("#navigation").css("background-color","#0EB493");
         } else {
-            $("#navigation").css("background-color","rgba(50, 50, 72, 1)");
+            $("#navigation").css("background-color","rgba(16, 22, 54, 0.2)");
         }
     });
 	
+	/* ========================================================================= */
+	/*	Fix Slider Height
+	/* ========================================================================= */	
 
+	var slideHeight = $(window).height();
+	
+	$('#slider, .carousel.slide, .carousel-inner, .carousel-inner .item').css('height',slideHeight);
+
+	$(window).resize(function(){'use strict',
+		$('#slider, .carousel.slide, .carousel-inner, .carousel-inner .item').css('height',slideHeight);
+	});
+	
+	
 	/* ========================================================================= */
 	/*	Portfolio Filtering
 	/* ========================================================================= */	
@@ -84,7 +95,29 @@ $(document).ready(function(){
 		closeClick : true,
 	});
 	
+	/* ========================================================================= */
+	/*	Parallax
+	/* ========================================================================= */	
+	
+	$('#facts').parallax("50%", 0.3);
+	
+	/* ========================================================================= */
+	/*	Timer count
+	/* ========================================================================= */
 
+	"use strict";
+    $(".number-counters").appear(function () {
+        $(".number-counters [data-to]").each(function () {
+            var e = $(this).attr("data-to");
+            $(this).delay(6e3).countTo({
+                from: 50,
+                to: e,
+                speed: 3e3,
+                refreshInterval: 50
+            })
+        })
+    });
+	
 	/* ========================================================================= */
 	/*	Back to Top
 	/* ========================================================================= */
@@ -106,3 +139,35 @@ $(document).ready(function(){
 });
 
 
+// ==========  START GOOGLE MAP ========== //
+function initialize() {
+    var myLatLng = new google.maps.LatLng(22.402789, 91.822156);
+
+    var mapOptions = {
+        zoom: 14,
+        center: myLatLng,
+        disableDefaultUI: true,
+        scrollwheel: false,
+        navigationControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        draggable: false,
+        mapTypeControlOptions: {
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'roadatlas']
+        }
+    };
+
+    var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: 'img/location-icon.png',
+        title: '',
+    });
+
+}
+
+google.maps.event.addDomListener(window, "load", initialize);
+// ========== END GOOGLE MAP ========== //
