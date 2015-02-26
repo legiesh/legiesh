@@ -29,7 +29,7 @@ $(document).ready(function(){
 	/*	Portfolio Filtering
 	/* ========================================================================= */	
 	
-	
+	jQuery(window).load(function(){
     var $container = $('.project-wrapper');
     $container.isotope({
         filter: '*',
@@ -39,7 +39,7 @@ $(document).ready(function(){
             queue: false
         }
     });
- 
+    }
     $('.work-filter a').click(function(){
         $('.work-filter .current').removeClass('current');
         $(this).addClass('current');
