@@ -39,7 +39,7 @@ $(document).ready(function(){
             queue: false
         }
     });
-    }
+    });
     $('.work-filter a').click(function(){
         $('.work-filter .current').removeClass('current');
         $(this).addClass('current');
