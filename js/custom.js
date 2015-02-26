@@ -1,3 +1,4 @@
+
 /* ========================================================================= */
 /*	Preloader
 /* ========================================================================= */
@@ -11,35 +12,49 @@ jQuery(window).load(function(){
 
 $(document).ready(function(){
 
-	
 	/* ========================================================================= */
-	/*	Fix Slider Height
-	/* ========================================================================= */	
+	/*	Menu item highlighting
+	/* ========================================================================= */
 
-	var slideHeight = $(window).height();
-	
-	$('#slider, .carousel.slide, .carousel-inner, .carousel-inner .item').css('height',slideHeight);
-
-	$(window).resize(function(){'use strict',
-		$('#slider, .carousel.slide, .carousel-inner, .carousel-inner .item').css('height',slideHeight);
+	jQuery('#nav').singlePageNav({
+		offset: jQuery('#nav').outerHeight(),
+		filter: ':not(.external)',
+		speed: 1200,
+		currentClass: 'current',
+		easing: 'easeInOutExpo',
+		updateHash: true,
+		beforeStart: function() {
+			console.log('begin scrolling');
+		},
+		onComplete: function() {
+			console.log('done scrolling');
+		}
 	});
 	
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 20) {
+            $("#navigation").css("background-color","#323248");
+        } else {
+            $("#navigation").css("background-color","rgba(50, 50, 72, 1)");
+        }
+    });
 	
+
 	/* ========================================================================= */
 	/*	Portfolio Filtering
 	/* ========================================================================= */	
 	
 	jQuery(window).load(function(){
-    var $container = $('.project-wrapper');
-    $container.isotope({
-        filter: '*',
-        animationOptions: {
-            duration: 750,
-            easing: 'linear',
-            queue: false
-        }
-    });
-    });
+	    var $container = $('.project-wrapper');
+	    $container.isotope({
+	        filter: '*',
+	        animationOptions: {
+	            duration: 750,
+	            easing: 'linear',
+	            queue: false
+	        }
+	    });
+ 	});
     $('.work-filter a').click(function(){
         $('.work-filter .current').removeClass('current');
         $(this).addClass('current');
@@ -69,7 +84,7 @@ $(document).ready(function(){
 		closeClick : true,
 	});
 	
-	
+
 	/* ========================================================================= */
 	/*	Back to Top
 	/* ========================================================================= */
