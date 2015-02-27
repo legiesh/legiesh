@@ -184,15 +184,9 @@ body > section,
 }
 
 
-
-
 /*=========================================
 	My Works
 ==========================================*/
-
-.project-wrapper{
-  height:2652px !important;  
-}
 
 .isotope-item {
     z-index: 2;
