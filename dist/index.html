@@ -1,0 +1,156 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profile app</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Homepage template -->
+        <script type="text/template" id="tplHome">
+            <div class="register">
+                <a href="#/register">Register</a>
+            </div>
+        </script>
+        <!-- Profile template -->
+        <script type="text/template" id="tplProfile">
+            <div id="profile">
+                <div class="container">
+                    <aside class="sidebar">
+                        <div id="holder" class="inputWrapper">
+
+                        </div>
+                        <input hidden id="fileUpload" class="file-upload" type="file" name="file" />
+                        <a id="uploadLink" href="#">Edit Photo</a>
+                        <br/>
+                        <a href="#/edit">Edit profile</a>
+                    </aside>
+                    <section class="main">
+                        <div id="profile_content">
+                            I'm {{name}} and I'm {{age}} and you can send your email to <a href="mailto:{{email}}">{{email}}</a>. I lives in the state of {{state}}. I likes to {{interests}}. {{newsletter}}. Please reach out to me on my phone {{phone}}.
+                        </div>
+                        <button type="button">Agree</button>
+                    </section>
+                </div>
+            </div>
+        </script>
+        <!-- Registration template -->
+        <script type="text/template" id="tplRegister">
+            <form action="#">
+                <div class="container">
+                    <!-- Add form here -->
+                    <aside class="sidebar">
+                        <div id="holder" class="inputWrapper">
+                            <p>Upload File</p>
+                        </div>
+                        <input id="fileUpload" class="file-upload" type="file" name="file" />
+                    </aside>
+                    <section class="main">
+                        <div id="error">
+
+                        </div>
+                        <div>
+                            <label for="">Name</label>
+                            <input id="firstName" type="text" name="firstName" placeholder="First Name" required data-rule="name" data-msg="First Name: Only alphabet allowed and shouln't exceed 20 char">
+                            <input id="lastName" type="text" name="lastName" placeholder="Last Name" required data-rule="name" data-msg="Last Name: Only alphabet allowed and shouln't exceed 20 char">
+                        </div>
+                        <div>
+                            <label for="age">Age</label>
+                            <input id="age" type="range" min="0" max="100" value="0" step="33.33">
+                            <div class="age-list">
+                                <span class="range1">13 - 19</span>
+                                <span class="range2">20 - 29</span>
+                                <span class="range3">30 - 45</span>
+                                <span class="range4">45 & above</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input id="email" type="email" required/>
+                        </div>
+                        <div>
+                            <label for="phone">Tel</label>
+                            <input id="phone" type="tel" />
+                        </div>
+                        <div>
+                            <label for="country">Country</label>
+                            <select id="country">
+                                <option value="">Seelct country</option>
+                                <option value="CA">Canada</option>
+                                <option value="US">UnitedStates</option>
+                                <option value="AU">Australia</option>
+                                <option value="IN">India</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="state">State</label>
+                            <select id="state">
+                                <option value="">Seelct state</option>
+                                <option value="AB">Alberta</option>
+                                <option value="BC">British Columbia</option>
+                                <option value="MB">Manitoba</option>
+                                <option value="NB">New Brunswick</option>
+                                <option value="NL">Newfoundland</option>
+                                <option value="NT">Northwest Territories</option>
+                                <option value="NS">Nova Scotia</option>
+                                <option value="NU">Nunavut</option>
+                                <option value="ON">Ontario</option>
+                                <option value="PE">Prince Edward Island</option>
+                                <option value="QC">Quebec</option>
+                                <option value="SK">Saskatchewan</option>
+                                <option value="YT">Yukon Territory</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="address">Address</label>
+                            <select id="address">
+                                <option value="novalue">Please select</option>
+                                <option value="home">Home</option>
+                                <option value="company">Company</option>
+                            </select>
+                            <div class="address" id="addressHome">
+                                <textarea id="homeAddress1" placeholder="Home address primary"></textarea>
+                                <textarea id="homeAddress2" placeholder="Home address secondory"></textarea>
+                            </div>
+                            <div class="address" id="addressCompany">
+                                <textarea id="companyAddress1" placeholder="Company address primary"></textarea>
+                                <textarea id="companyAddress2" placeholder="Company adress secondary"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="interests">Interests</label>
+                            <input type="text" name="interests" id="interests" />
+                            <div id="tags"></div>
+                        </div>
+                        <div class="subscribe">
+                            <label>
+                                <input id="subscribe" type="checkbox" name="subscribe" value=""> Subscribe to the news letter</label>
+                        </div>
+                        <button type="button" id="submit" class="submit-btn">Submit</button>
+                    </section>
+                </div>
+            </form>
+        </script>
+    </div>
+    <script src="js/vendor/jquery-1.11.2.min.js"></script>
+    <script src="js/vendor/director.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        var profileApp = new App();
+        profileApp.init('#app');
+        profileApp.route();
+    </script>
+</body>
+
+</html>
