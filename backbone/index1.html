@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>BackboneTutorials.com Beginner Video</title>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+  <div class="container">
+    <h1>User Manager</h1>
+    <hr />
+    <div class="page"></div>
+  </div>
+
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js" type="text/javascript"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
+
+  <script type="text/template" id="user-list-template">
+    <a href="#/new" class"btn btn-primary">New user</a>
+    <hr />
+    <table class="table striped">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% _.each(users, function(user) { %>
+          <tr>
+            <td><%= user.get('firstname') %></td>
+            <td><%= user.get('lastname') %></td>
+            <td><%= user.get('age') %></td>
+            <td><a href="#/edit/<%= user.id %>" class="btn" >Edit</a></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </script>
+
+<script type="text/template" id="edit-user-template">
+	<form class="edit-user-form">
+		<legend><%= user? 'Update': 'Create' %> user</legend>
+		<label for="">First Name</label>
+		<input type="text" name="firstname" value="<%= user? user.get('firstname'): '' %>" />
+		<label for="">Last Name</label>
+		<input type="text" name="lastname" value="<%= user? user.get('lastname'): '' %>" />
+		<label for="">Age</label>
+		<input type="text" name="age" value="<%= user? user.get('age'): '' %>" />
+		<hr/>		
+		<button type="submit" class="btn"><%= user? 'update': 'create' %></button>
+		<% if(user) { %>
+		<button type="submit" class="btn btn-danger delete">Delete</button>
+		<input type="hidden" name="id" value="<%= user.id %>" />
+		<% }; %>
+	</form>
+</script>
+ 
+<script type="text/javascript" src="js/backbone.js"></script>
+
+</body>
+</html> 
